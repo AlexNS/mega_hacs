@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
     LIGHT_LUX,
-    TEMP_CELSIUS,
+    UnitOfTemperature,
     CONCENTRATION_PARTS_PER_MILLION,
     PRESSURE_BAR,
 )
@@ -87,11 +87,11 @@ class Request:
 i2c_classes = {
     'htu21d': [
         DeviceType(SensorDeviceClass.HUMIDITY, PERCENTAGE, None),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'sht31': [
         DeviceType(SensorDeviceClass.HUMIDITY, PERCENTAGE, None, delay=1.5),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'max44009': [
         DeviceType(SensorDeviceClass.ILLUMINANCE, LIGHT_LUX, None)
@@ -104,37 +104,37 @@ i2c_classes = {
     ],
     'bmp180': [
         DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'bmx280': [
         DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
         DeviceType(SensorDeviceClass.HUMIDITY, PERCENTAGE, None)
     ],
     'dps368': [
         DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'mlx90614': [
         Skip,
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, 'temp'),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, 'object'),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, 'temp'),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, 'object'),
     ],
     'ptsensor': [
         Skip,
         Request(delay=3),  # запрос на измерение
         DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'mcp9600': [
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),  # термопара
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),  # сенсор встроенный в микросхему
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),  # термопара
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),  # сенсор встроенный в микросхему
     ],
     't67xx': [
         DeviceType(SensorDeviceClass.CO2, CONCENTRATION_PARTS_PER_MILLION, None)
     ],
     'tmp117': [
-        DeviceType(SensorDeviceClass.TEMPERATURE, TEMP_CELSIUS, None),
+        DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'ads1115': [
         DeviceType(None, None, 'ch0'),
