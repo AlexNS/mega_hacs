@@ -12,7 +12,7 @@ from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.restore_state import RestoreEntity
 from . import hub as h
-from .const import DOMAIN, CONF_CUSTOM, CONF_INVERT, EVENT_BINARY_SENSOR, LONG, \
+from .const import DOMAIN, CONF_CUSTOM, CONF_INVERT, LONG, \
     LONG_RELEASE, RELEASE, PRESS, SINGLE_CLICK, DOUBLE_CLICK, EVENT_BINARY, CONF_SMOOTH, CONF_RANGE
 
 _events_on = False

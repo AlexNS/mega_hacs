@@ -15,13 +15,12 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import UnitOfTemperature, PERCENTAGE, LIGHT_LUX
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-from .config_parser import parse_config, DS2413, MCP230, MCP230_OUT, MCP230_IN, PCA9685
+from .config_parser import parse_config, DS2413, MCP230, PCA9685
 from .const import (
     TEMP,
     HUM,
     PRESS,
     LUX,
-    PATT_SPLIT,
     DOMAIN,
     CONF_HTTP,
     EVENT_BINARY_SENSOR,
@@ -29,7 +28,6 @@ from .const import (
     CONF_FORCE_D,
     CONF_DEF_RESPONSE,
     PATT_FW,
-    CONF_FORCE_I2C_SCAN,
     REMOVE_CONFIG,
 )
 from .entities import set_events_off, BaseMegaEntity, MegaOutPort, safe_int
@@ -661,7 +659,7 @@ class MegaD:
             cfg.pop(x, None)
         cfg.update(new)
         self.lg.debug(f"new config: %s", cfg)
-        self.config.data = cfg
+        self.hass.config_entries.async_update_entry(self.config, data=cfg)
         if reload_entry:
             await self.hass.config_entries.async_reload(self.config.entry_id)
         return cfg
