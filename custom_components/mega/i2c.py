@@ -9,9 +9,10 @@ from homeassistant.const import (
     LIGHT_LUX,
     UnitOfTemperature,
     CONCENTRATION_PARTS_PER_MILLION,
-    PRESSURE_BAR,
+    UnitOfPressure
 )
 from collections import namedtuple
+
 
 
 # DeviceType = namedtuple('DeviceType', 'device_class,unit_of_measurement,suffix')
@@ -103,16 +104,16 @@ i2c_classes = {
         DeviceType(SensorDeviceClass.ILLUMINANCE, LIGHT_LUX, None)
     ],
     'bmp180': [
-        DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
+        DeviceType(SensorDeviceClass.PRESSURE, UnitOfPressure.BAR, None),
         DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'bmx280': [
-        DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
+        DeviceType(SensorDeviceClass.PRESSURE, UnitOfPressure.BAR, None),
         DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
         DeviceType(SensorDeviceClass.HUMIDITY, PERCENTAGE, None)
     ],
     'dps368': [
-        DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
+        DeviceType(SensorDeviceClass.PRESSURE, UnitOfPressure.BAR, None),
         DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'mlx90614': [
@@ -123,7 +124,7 @@ i2c_classes = {
     'ptsensor': [
         Skip,
         Request(delay=3),  # запрос на измерение
-        DeviceType(SensorDeviceClass.PRESSURE, PRESSURE_BAR, None),
+        DeviceType(SensorDeviceClass.PRESSURE, UnitOfPressure.BAR, None),
         DeviceType(SensorDeviceClass.TEMPERATURE, UnitOfTemperature.CELSIUS, None),
     ],
     'mcp9600': [
