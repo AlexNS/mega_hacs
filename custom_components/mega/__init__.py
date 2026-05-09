@@ -11,7 +11,7 @@ from homeassistant.const import (
     CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE, CONF_DEVICE_CLASS, CONF_PORT
 )
 from homeassistant.core import HomeAssistant, ServiceCall
-from homeassistant.helpers.service import bind_hass
+
 from homeassistant.helpers import config_validation as cv
 from homeassistant.config_entries import ConfigEntry
 from .const import DOMAIN, CONF_INVERT, CONF_RELOAD, PLATFORMS, CONF_PORTS, CONF_CUSTOM, CONF_SKIP, CONF_PORT_TO_SCAN, \
@@ -271,7 +271,8 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
     return True
 
 
-async def _save_service(hass: HomeAssistant, call: ServiceCall):
+async def _save_service(call: ServiceCall):
+    hass = call.hass
     mega_id = call.data.get('mega_id')
     if mega_id:
         hub: MegaD = hass.data[DOMAIN][mega_id]
@@ -282,8 +283,8 @@ async def _save_service(hass: HomeAssistant, call: ServiceCall):
                 await hub.save()
 
 
-@bind_hass
-async def _get_port(hass: HomeAssistant, call: ServiceCall):
+async def _get_port(call: ServiceCall):
+    hass = call.hass
     port = call.data.get('port')
     mega_id = call.data.get('mega_id')
     if mega_id:
@@ -308,8 +309,8 @@ async def _get_port(hass: HomeAssistant, call: ServiceCall):
                     await hub.get_port(x)
 
 
-@bind_hass
-async def _run_cmd(hass: HomeAssistant, call: ServiceCall):
+async def _run_cmd(call: ServiceCall):
+    hass = call.hass
     mega_id = call.data.get('mega_id')
     cmd = call.data.get('cmd')
     if mega_id:
